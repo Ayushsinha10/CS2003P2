@@ -5,14 +5,16 @@ function Item(movie){
     const item = document.createElement("li");
 
     const Title = document.createElement("button");
+    Title.classList.add('Movies');
     let hours = Number(movie.duration)/60;
     hours = ~~hours;
     let minuets = Number(movie.duration)%60;
     Title.textContent = `${movie.movie_title}(${movie.director_name},${movie.title_year},${hours}:${minuets})`;
-    Title.onmousedown = function logs(){
+    Title.onclick = function logs(){
         log(Title, movie);
 
     }
+   
    
     item.appendChild(Title);
   
@@ -61,11 +63,7 @@ function Item(movie){
               }
   
           }
-          let arr = Duration();
-          durationdiv.textContent =`Total duration: ${arr[0]}:${arr[1]}`
-          movies.textContent = `Number of movies: ${array2.length}`
-          listelement2.appendChild(movies);
-          listelement2.appendChild(durationdiv);
+          metadata(listelement2)
     }
     function Duration(){
         let duration = 0;
@@ -88,11 +86,28 @@ window.onload = function() {
     for (let i = 0; i < array.length; i++){
         let currentMovie = array[i];
         listelement.appendChild(Item(currentMovie))
+
         
     } 
+    
+    let test = document.getElementsByClassName("Movies");
+    test[0].click();
+    test[6].click();
+    test[29].click();   
+    test[74].click();
+    
+       
 
    
  
 
     
+}
+function metadata(listelement2){
+    let arr = Duration();
+    durationdiv.textContent =`Total duration: ${arr[0]}:${arr[1]}`
+    movies.textContent = `Number of movies: ${array2.length}`
+    listelement2.appendChild(movies);
+    listelement2.appendChild(durationdiv);
+
 }
